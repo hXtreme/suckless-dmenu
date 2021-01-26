@@ -600,7 +600,7 @@ readstdin(void)
 		items[i].text = NULL;
 	inputw = items ? TEXTW(items[imax].text) : 0;
 	lines = MIN(lines, i);
-	columns = MIN(columns, (i / lines));
+	columns = MIN(columns, (i + lines - 1)/ lines);
 }
 
 static void
