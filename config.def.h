@@ -4,7 +4,7 @@
 static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
 static int truecentered = 0;                    /* -C option; centers dmenu on screen */
 static int centered = 0;                    /* -c option; centers dmenu on screen */
-static int min_width = 500;                    /* -mw option; minimum width when [true]centered */
+static int min_width = 720;                    /* -mw option; minimum width when [true]centered */
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static const char *fonts[] = {
 	"Hack Nerd Font Mono:pixelsize=12:antialias=true:autohint=true",
@@ -18,8 +18,8 @@ static const char *colors[SchemeLast][2] = {
 	[SchemeOut] = { "#000000", "#00ffff" },
 };
 /* -l and -g options; controls number of lines and columns in grid if > 0 */
-static unsigned int lines      = 15;
-static unsigned int columns    = 0;
+static unsigned int lines      = 7;
+static unsigned int columns    = 1;
 
 /*
  * Characters not considered part of a word while deleting words
