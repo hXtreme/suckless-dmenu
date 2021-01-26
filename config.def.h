@@ -2,8 +2,9 @@
 /* Default settings; can be overriden by command line. */
 
 static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
+static int truecentered = 0;                    /* -C option; centers dmenu on screen */
 static int centered = 0;                    /* -c option; centers dmenu on screen */
-static int min_width = 500;                    /* minimum width when centered */
+static int min_width = 500;                    /* -mw option; minimum width when [true]centered */
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static const char *fonts[] = {
 	"Hack Nerd Font Mono:pixelsize=12:antialias=true:autohint=true",

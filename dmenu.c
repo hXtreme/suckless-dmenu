@@ -694,7 +694,11 @@ setup(void)
 				if (INTERSECT(x, y, 1, 1, info[i]))
 					break;
 
-		if (centered) {
+		if (truecentered) {
+			mw = MIN(MAX(max_textw() + promptw, min_width), info[i].width);
+			x = info[i].x_org + ((info[i].width  - mw) / 2);
+			y = info[i].y_org + ((info[i].height - mh) / 2);
+		} else if (centered) {
 			mw = MIN(MAX(max_textw() + promptw, min_width), info[i].width);
 			x = info[i].x_org + ((info[i].width  - mw) / 2);
 			y = info[i].y_org + (topbar ? 0 : info[i].height - mh);
@@ -712,7 +716,11 @@ setup(void)
 			die("could not get embedding window attributes: 0x%lx",
 			    parentwin);
 
-		if (centered) {
+		if (truecentered) {
+			mw = MIN(MAX(max_textw() + promptw, min_width), wa.width);
+			x = (wa.width  - mw) / 2;
+			y = (wa.height - mh) / 2;
+		} else if (centered) {
 			mw = MIN(MAX(max_textw() + promptw, min_width), wa.width);
 			x = (wa.width  - mw) / 2;
 			y = topbar ? 0 : wa.height - mh;
@@ -781,12 +789,16 @@ main(int argc, char *argv[])
 			fast = 1;
 		else if (!strcmp(argv[i], "-c"))   /* centers dmenu on screen */
 			centered = 1;
+		else if (!strcmp(argv[i], "-C"))   /* centers dmenu on screen */
+			truecentered = 1;
 		else if (!strcmp(argv[i], "-i")) { /* case-insensitive item matching */
 			fstrncmp = strncasecmp;
 			fstrstr = cistrstr;
 		} else if (i + 1 == argc)
 			usage();
 		/* these options take one argument */
+		else if (!strcmp(argv[i], "-mw"))   /* min_width for dmenu */
+			min_width = atoi(argv[++i]);
 		else if (!strcmp(argv[i], "-g")) {   /* number of columns in grid */
 			columns = atoi(argv[++i]);
 			if (lines == 0) lines = 1;
